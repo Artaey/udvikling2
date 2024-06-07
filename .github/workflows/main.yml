@@ -1,0 +1,30 @@
+name: "Linting & tests"
+
+on: push
+
+jobs:
+  Linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 #githubs default plugin that gets the code to the virtual server from github
+      - name: "Intall package"
+        run: npm install
+      - name: "execute Linter"
+        run: npm run lint
+  E2E:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Intall package"
+        run: npm install
+      - uses: cypress-io/github-action@v6 #a cypress github action plugin that automaticly run the cypress e2e test
+        with:
+          start: npm run dev #runs the site
+  Unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Intall package"
+        run: npm install
+      - name: "run unit test" 
+        run: npm run test:unit
