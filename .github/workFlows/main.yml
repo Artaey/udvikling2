@@ -6,8 +6,18 @@ jobs:
   Linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 #githubs default plugin that gets the 
       - name: "Intall package"
         run: npm install
       - name: "execute Linter"
         run: npm run lint
+  E2E:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Intall package"
+        run: npm install
+      - uses: cypress-io/github-actions@v6 #
+        with:
+          start: npm run dev
+
